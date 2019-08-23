@@ -7,15 +7,20 @@ const sessionClient = new dialogflow.SessionsClient();
 const sessionPath = sessionClient.sessionPath(config.googleProjectID, config.dialogFlowSessionID);
 
 module.exports = {
-  textQuery: async function(text) {
+  textQuery: async function(text, parameters = {}) {
     const request = {
       session: sessionPath,
       queryInput: {
         text: {
-          text: req.body.text,
+          text: text,
           languageCode: config.dialogFlowSessionLanguageCode,
         },
       },
+      queryParams: {
+        payload: {
+          data: parameters
+        }
+      }
     };
     let responses = await sessionClient
       .detectIntent(request);
