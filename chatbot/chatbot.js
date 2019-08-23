@@ -8,6 +8,7 @@ const sessionPath = sessionClient.sessionPath(config.googleProjectID, config.dia
 
 module.exports = {
   textQuery: async function(text, parameters = {}) {
+    let self = module.exports;
     const request = {
       session: sessionPath,
       queryInput: {
@@ -24,6 +25,11 @@ module.exports = {
     };
     let responses = await sessionClient
       .detectIntent(request);
+    responses = await self.handleAction(responses)
+    return responses;
+  },
+
+  handleAction: function(responses){
     return responses;
   }
 }
