@@ -5,6 +5,7 @@ npm-debug.log
 /.idea
 /public
 /keys
+config/dev.js
 
 .env
 .passport.js
