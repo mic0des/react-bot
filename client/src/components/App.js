@@ -9,13 +9,13 @@ import Chatbot from './chatbot/Chatbot';
 const App = () => (
     <div>
       <BrowserRouter>
-        <div>
           <Header/>
-          <Route exact path="/" component={Landing}/>
-          <Route exact path="/about" component={About}/>
-          <Route exact path="/shop" component={Shop}/>
-          <Chatbot/>
-        </div>
+          <div className="container">
+            <Route exact path="/" component={Landing}/>
+            <Route exact path="/about" component={About}/>
+            <Route exact path="/shop" component={Shop}/>
+            <Chatbot/>
+          </div>
       </BrowserRouter>
     </div>
 );
