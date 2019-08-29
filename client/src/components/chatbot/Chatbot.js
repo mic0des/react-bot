@@ -25,23 +25,27 @@ class Chatbot extends Component {
 
     for (let msg of res.data.fullfillmentMessages) {
       let says = {
-        speaks: 'curio-bot',
+        speaks: 'bot',
         msg: msg
       }
       this.setState({messages: [...this.state.messages, says]});
     }
   }
 
-  async def_event_query(event) {
+  async df_event_query(event) {
     const res = await axios.post('/api/df_event_query', {event});
 
     for (let msg of res.data.fulfillmentMessages) {
       let says = {
-        speaks: 'curio-bot',
+        speaks: 'bot',
         msg: msg
       }
       this.setState({messages: [...this.state.messages, says]});
     }
+  }
+
+  componentDidMount(){
+    this.df_event_query('Welcome');
   }
 
   renderMessages(stateMessages) {
