@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios/index';
 
 class Chatbot extends Component {
   constructor(props){
