@@ -35,6 +35,7 @@ class Chatbot extends Component {
     const res = await axios.post('/api/df_text_query', {text, userID: cookies.get('userID')});
 
     for (let msg of res.data.fulfillmentMessages) {
+      console.log(JSON.stringify(msg));
       let says = {
         speaks: 'bot',
         msg: msg
@@ -66,7 +67,11 @@ class Chatbot extends Component {
   renderMessages(stateMessages) {
     if (stateMessages) {
       return stateMessages.map((message, i) => {
-        return <Message key={i} speaks={message.speaks} text={message.msg.text.text} />;
+        if (message.msg && message.msg.text && message.msg.text.text) {
+          return <Message key={i} speaks={message.speaks} text={message.msg.text.text} />;
+        } else {
+          return <h2>Cards</h2>
+        }
       });
     } else {
       return null;
