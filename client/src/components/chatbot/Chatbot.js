@@ -11,7 +11,7 @@ class Chatbot extends Component {
   messagesEnd;
   constructor(props){
     super(props);
-
+    this._handleQuickReplyPayload = this._handleQuickReplyPayload.bind(this);
     this._handleInputKeyPress = this._handleInputKeyPress.bind(this);
 
     this.state = {
@@ -63,6 +63,13 @@ class Chatbot extends Component {
 
   componentDidUpdate(){
     this.messagesEnd.scrollIntoView({behavior: "smooth"});
+  }
+
+  _handleQuickReplyPayload(event, payload, text) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.df_text_query(text);
   }
 
   renderCards(cards) {
